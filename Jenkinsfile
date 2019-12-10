@@ -27,7 +27,12 @@ stages {
        // Run the maven build
 
       //if (isUnix()) {
-         sh 'mvn -Dmaven.test.failure.ignore=true install'
+         // sh 'mvn -Dmaven.test.failure.ignore=true install'
+           sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
       //} 
       //else {
       //   bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
