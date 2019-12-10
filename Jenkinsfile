@@ -64,13 +64,13 @@ stages {
 //     nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
 //      }
 // }
-}
-post {
-        success {
-            mail to:"ravindrareddyg51@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
-        }
-        failure {
-            mail to:"ravindrareddyg51@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
-        }
-    }       
+// }
+// post {
+//        success {
+//            mail to:"ravindrareddyg51@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
+//        }
+//        failure {
+//            mail to:"ravindrareddyg51@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
+//        }
+//    }       
 }
