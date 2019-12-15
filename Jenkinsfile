@@ -67,10 +67,10 @@ stages {
 // }
 // post {
 //        success {
-//            mail to:"ravindrareddyg51@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
+//            mail to:"hairavi2005@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
 //        }
 //        failure {
-//            mail to:"ravindrareddyg51@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
+//            mail to:"hairavi2005@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
 //        }
 //    }       
 }
