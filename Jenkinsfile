@@ -2,42 +2,25 @@ pipeline {
     agent any 
     tools { 
         maven 'Maven' 
-      
-    }
+   }
 stages { 
      
- stage('Preparation') { 
+ stage('checkout') { 
      steps {
-// for display purposes
 
-      // Get some code from a GitHub repository
+            git 'https://github.com/ravigopireddy51/hello-world-servlet.git'
 
-      git 'https://github.com/ravigopireddy51/hello-world-servlet.git'
-
-      // Get the Maven tool.
-     
- // ** NOTE: This 'M3' Maven tool must be configured
- 
-     // **       in the global configuration.   
-     }
+           }
    }
 
    stage('Build') {
-       steps {
-       // Run the maven build
-
-      //if (isUnix()) {
-         // sh 'mvn -Dmaven.test.failure.ignore=true install'
+       steps {  
            sh 'echo "Hello World"'
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-      //} 
-      //else {
-      //   bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-       }
-//}
+            }
    }
  
   stage('Results') {
@@ -46,31 +29,11 @@ stages {
       archiveArtifacts 'target/*.war'
       }
  }
-// stage('Sonarqube') {
-//    environment {
- //       scannerHome = tool 'sonarqube'
- //   }
- //   steps {
- //       withSonarQubeEnv('sonarqube') {
- //           sh "${scannerHome}/bin/sonar-scanner"
- //       }
- //       timeout(time: 10, unit: 'MINUTES') {
- //           waitForQualityGate abortPipeline: true
- //       }
- //   }
-// }
-//     stage('Artifact upload') {
-//      steps {
-//     nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
-//      }
-// }
-// }
-// post {
-//        success {
-//            mail to:"ravindrareddyg51@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
-//        }
-//        failure {
-//            mail to:"ravindrareddyg51@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
-//        }
-//    }       
+
+     stage('Artifact upload') {
+      steps {
+      nexusArtifactUploader credentialsId: '0610afd2-b5a0-4c6f-a6b5-3f84a943df32', groupId: 'com.geekcap.vmturbo', nexusUrl: 'http://15.206.127.94:8081/nexus/', nexusVersion: 'nexus2', protocol: 'http', repository: 'hello-world-servlet', version: '$BUILD_NUMBER'
+      }
+   }
+ }
 }
