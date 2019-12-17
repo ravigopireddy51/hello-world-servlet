@@ -32,7 +32,7 @@ stages {
 
      stage('Artifact upload') {
       steps {
-      nexusArtifactUploader credentialsId: '0610afd2-b5a0-4c6f-a6b5-3f84a943df32', groupId: 'com.geekcap.vmturbo', nexusUrl: 'http://15.206.127.94:8081/nexus/', nexusVersion: 'nexus2', protocol: 'http', repository: 'hello-world-servlet', version: '$BUILD_NUMBER'
+      nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/pipeline_job/target/hello-world-servlet.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
       }
    }
  }
