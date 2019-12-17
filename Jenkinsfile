@@ -7,7 +7,7 @@ stages {
      
  stage('checkout') { 
      steps {
-           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ravigopireddy51/hello-world-servlet.git']]])
+           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'https://github.com/ravigopireddy51/hello-world-servlet.git']]])
 
            }
    }
